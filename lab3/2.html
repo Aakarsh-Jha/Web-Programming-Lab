@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Employee CRUD (No SQL)</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Employee CRUD Operations</h2>
+
+  <form id="employeeForm" class="border p-4 bg-white rounded shadow mb-4">
+    <h4>Add / Update Employee</h4>
+    <input type="hidden" id="empId">
+    <div class="mb-3">
+      <label class="form-label">Name</label>
+      <input type="text" id="name" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input type="email" id="email" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Department</label>
+      <input type="text" id="department" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Salary</label>
+      <input type="text" id="salary" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-danger">Save Employee</button>
+  </form>
+
+  <h4>Employee List</h4>
+  <table class="table table-bordered table-striped" id="employeeTable">
+    <thead class="table-dark">
+      <tr>
+        <th>Name</th><th>Email</th><th>Department</th><th>Salary</th><th>Actions</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<script>
+ 
+  function loadEmployees() {
+    const employees = JSON.parse(localStorage.getItem('employees')) || [];
+    const tbody = document.querySelector('#employeeTable tbody');
+    tbody.innerHTML = '';
+    employees.forEach((emp, index) => {
+      tbody.innerHTML += `
+        <tr>
+          <td>${emp.name}</td>
+          <td>${emp.email}</td>
+          <td>${emp.department}</td>
+          <td>${emp.salary}</td>
+          <td>
+            <button class="btn btn-warning btn-sm" onclick="editEmployee(${index})">Edit</button>
+            <button class="btn btn-danger btn-sm" onclick="deleteEmployee(${index})">Delete</button>
+          </td>
+        </tr>
+      `;
+    });
+  }
+
+ 
+  document.getElementById('employeeForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const employees = JSON.parse(localStorage.getItem('employees')) || [];
+    const id = document.getElementById('empId').value;
+    const employee = {
+      name: document.getElementById('name').value,
+      email: document.getElementById('email').value,
+      department: document.getElementById('department').value,
+      salary: document.getElementById('salary').value
+    };
+
+    if (id) {
+      employees[id] = employee; 
+    } else {
+      employees.push(employee); 
+    }
+
+    localStorage.setItem('employees', JSON.stringify(employees));
+    document.getElementById('employeeForm').reset();
+    document.getElementById('empId').value = '';
+    loadEmployees();
+  });
+
+  
+  function editEmployee(index) {
+    const employees = JSON.parse(localStorage.getItem('employees')) || [];
+    const emp = employees[index];
+    document.getElementById('empId').value = index;
+    document.getElementById('name').value = emp.name;
+    document.getElementById('email').value = emp.email;
+    document.getElementById('department').value = emp.department;
+    document.getElementById('salary').value = emp.salary;
+  }
+
+ 
+  function deleteEmployee(index) {
+    const employees = JSON.parse(localStorage.getItem('employees')) || [];
+    employees.splice(index, 1);
+    localStorage.setItem('employees', JSON.stringify(employees));
+    loadEmployees();
+  }
+
+ 
+  loadEmployees();
+</script>
+
+</body>
+</html>
