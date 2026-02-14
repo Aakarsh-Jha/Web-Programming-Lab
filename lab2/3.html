@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Birthday Card Designer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 20px;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .controls {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        select, input[type="number"], textarea {
+            margin-top: 5px;
+            padding: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        input[type="radio"], input[type="checkbox"] {
+            width: auto;
+            margin-right: 5px;
+        }
+
+        .card-preview {
+            background-color: yellow;
+            width: 400px;
+            height: 500px;
+            padding: 20px;
+            text-align: center;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-style: none;
+            border-width: 4px;
+        }
+
+        #cardText {
+            margin-bottom: 20px;
+            font-family: Verdana;
+            font-size: 25px;
+        }
+
+        #cardImage {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Design birthday card</h1>
+    <div class="container">
+        <div class="controls">
+            <label for="bgColor">Choose background color:</label>
+            <select id="bgColor" onchange="updateCard()">
+                <option value="yellow">Yellow</option>
+                <option value="pink">Pink</option>
+                <option value="lightblue">Light Blue</option>
+            </select>
+
+            <label for="fontType">Choose a font:</label>
+            <select id="fontType" onchange="updateCard()">
+                <option value="Verdana">Verdana</option>
+                <option value="Arial">Arial</option>
+                <option value="Times New Roman">Times New Roman</option>
+            </select>
+
+            <label for="fontSize">Specify a numeric font size (px):</label>
+            <input type="number" id="fontSize" value="25" min="10" max="100" oninput="updateCard()">
+
+            <label>Choose a border style:</label>
+            <input type="radio" id="borderNone" name="borderStyle" value="none" checked onchange="updateCard()">
+            <label for="borderNone">None</label>
+            <input type="radio" id="borderDouble" name="borderStyle" value="double" onchange="updateCard()">
+            <label for="borderDouble">Double</label>
+            <input type="radio" id="borderSolid" name="borderStyle" value="solid" onchange="updateCard()">
+            <label for="borderSolid">Solid</label>
+
+            <label for="addPicture">Add the Default Picture</label>
+            <input type="checkbox" id="addPicture" checked onchange="updateCard()">
+
+            <label for="greetingText">Enter the greeting text below:</label>
+            <textarea id="greetingText" rows="4" oninput="updateCard()">Happy Birthday</textarea>
+        </div>
+
+        <div class="card-preview" id="cardPreview">
+            <p id="cardText">Happy Birthday</p>
+            <img src="animated-birthday-cake-icon-with-anniversary-design-vector-illustration_1263357-29468.avif" alt="Birthday Cake" id="cardImage" style="display: block;">
+        </div>
+    </div>
+
+    <script>
+        function updateCard() {
+            const cardPreview = document.getElementById('cardPreview');
+            const cardText = document.getElementById('cardText');
+            const cardImage = document.getElementById('cardImage');
+
+            cardPreview.style.backgroundColor = document.getElementById('bgColor').value;
+
+            cardText.style.fontFamily = document.getElementById('fontType').value;
+            cardText.style.fontSize = document.getElementById('fontSize').value + 'px';
+
+            const borderStyle = document.querySelector('input[name="borderStyle"]:checked').value;
+            cardPreview.style.borderStyle = borderStyle;
+
+            cardImage.style.display = document.getElementById('addPicture').checked ? 'block' : 'none';
+
+            cardText.textContent = document.getElementById('greetingText').value;
+        }
+    </script>
+</body>
+</html>

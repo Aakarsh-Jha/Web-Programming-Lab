@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Calculator</title>
+</head>
+<body>
+
+    <h3>Calculator</h3>
+
+    <input type="text" id="num1" placeholder="First number"><br><br>
+    <input type="text" id="num2" placeholder="Second number"><br><br>
+
+    <button onclick="add()">+</button>
+    <button onclick="subtract()">-</button>
+    <button onclick="multiply()">*</button>
+    <button onclick="divide()">/</button>
+
+    <br><br>
+
+    <input type="text" id="result" placeholder="Result" readonly>
+
+    <script>
+        function add() {
+            calculate("+");
+        }
+
+        function subtract() {
+            calculate("-");
+        }
+
+        function multiply() {
+            calculate("*");
+        }
+
+        function divide() {
+            calculate("/");
+        }
+
+        function calculate(op) {
+            var a = parseFloat(document.getElementById("num1").value);
+            var b = parseFloat(document.getElementById("num2").value);
+            var res;
+
+            if (isNaN(a) || isNaN(b)) {
+                alert("Enter valid numbers");
+                return;
+            }
+
+            if (op === "+") res = a + b;
+            if (op === "-") res = a - b;
+            if (op === "*") res = a * b;
+            if (op === "/") {
+                if (b === 0) {
+                    alert("Cannot divide by zero");
+                    return;
+                }
+                res = a / b;
+            }
+
+            document.getElementById("result").value = res;
+        }
+    </script>
+
+</body>
+</html>

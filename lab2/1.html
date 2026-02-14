@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Table and Image Animation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 20px;
+            left: 300px;
+            transition: left 1s ease-in-out;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 300px;
+        }
+
+        table, th, td {
+            border: 1px solid #333;
+            text-align: center;
+            padding: 10px;
+        }
+
+        /* Alternate row colors */
+        tr:nth-child(even) {
+            background-color: #e0f7fa;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #f1f8e9;
+        }
+
+        img {
+            width: 150px;
+            height: auto;
+            border: 2px solid #333;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>3 × 3 Table with Image</h2>
+
+    <div class="container" id="content">
+        <table>
+            <tr>
+                <td>A</td>
+                <td>B</td>
+                <td>C</td>
+            </tr>
+            <tr>
+                <td>D</td>
+                <td>E</td>
+                <td>F</td>
+            </tr>
+            <tr>
+                <td>G</td>
+                <td>H</td>
+                <td>I</td>
+            </tr>
+        </table>
+
+        <img src="mcv16179_MAHE-LOGO-300x300.png" alt="Sample Image">
+    </div>
+
+    <br>
+    <button onclick="moveLeft()">Move Right to Left</button>
+
+    <script>
+        function moveLeft() {
+            document.getElementById("content").style.left = "-300px";
+        }
+    </script>
+
+</body>
+</html>
