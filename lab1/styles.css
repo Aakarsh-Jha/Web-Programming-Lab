@@ -1,0 +1,26 @@
+#grad {
+  background-image: linear-gradient(to bottom, rgb(9, 0, 128), white);
+  min-height: 100vh;
+}
+
+.header {
+  padding: 60px;
+  text-align: left;
+  color: white;
+  font-size: 15px;
+} 
+
+.video-gallery {
+  display: flex;
+  justify-content: center;
+}
+
+figure {
+  flex: 1;
+  text-align: center;
+}
+
+video {
+  width: 100%;
+  max-width: 300px; 
+}
