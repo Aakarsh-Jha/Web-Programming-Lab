@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Product</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 500px; margin: 40px auto; background: #fff5f5; color: #333; }
+    h2 { border-bottom: 2px solid #c0392b; padding-bottom: 8px; color: #c0392b; }
+    p { display: flex; flex-direction: column; gap: 4px; }
+    label { font-weight: bold; font-size: 14px; }
+    input, textarea { padding: 8px; border: 1px solid #e0a0a0; border-radius: 4px; font-size: 14px; width: 100%; box-sizing: border-box; }
+    input:focus, textarea:focus { outline: none; border-color: #c0392b; box-shadow: 0 0 0 2px rgba(192,57,43,0.2); }
+    textarea { height: 100px; resize: vertical; }
+    button { margin-top: 12px; background: #c0392b; color: white; padding: 10px 20px; border: none; border-radius: 4px; font-size: 15px; cursor: pointer; width: 100%; }
+    button:hover { background: #e74c3c; }
+    a { display: inline-block; margin-top: 12px; color: #c0392b; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <h2>Add Product</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save Product</button>
+  </form>
+  <a href="/">← Back to list</a>
+</body>
+</html>

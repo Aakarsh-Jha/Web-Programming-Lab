@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Products</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 700px; margin: 40px auto; background: #fff5f5; color: #333; }
+    h2 { border-bottom: 2px solid #c0392b; padding-bottom: 8px; color: #c0392b; }
+    a.btn { background: #c0392b; color: white; padding: 8px 14px; text-decoration: none; border-radius: 4px; font-size: 14px; }
+    a.btn:hover { background: #e74c3c; }
+    ul { list-style: none; padding: 0; margin-top: 20px; }
+    li { background: white; padding: 16px; margin-bottom: 12px; border-radius: 6px; box-shadow: 0 1px 4px rgba(0,0,0,0.1); border-left: 4px solid #c0392b; }
+    li strong { font-size: 16px; }
+    .price { color: #c0392b; font-weight: bold; margin-left: 8px; }
+    .desc { color: #666; margin-top: 6px; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <h2>Product List</h2>
+  <a class="btn" href="/add/">+ Add New Product</a>
+  <ul>
+    {% for product in products %}
+      <li>
+        <strong>{{ product.title }}</strong>
+        <span class="price">₹{{ product.price }}</span>
+        <div class="desc">{{ product.description }}</div>
+      </li>
+    {% empty %}
+      <li>No products yet. Add one above!</li>
+    {% endfor %}
+  </ul>
+</body>
+</html>

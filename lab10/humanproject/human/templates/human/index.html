@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Human Manager</title>
+</head>
+<body>
+  <h2>Human Manager</h2>
+
+  <label for="humanSelect">Select a Person:</label><br>
+  <select id="humanSelect" onchange="loadHuman(this.value)">
+    <option value="">-- Select --</option>
+    {% for h in humans %}
+      <option value="{{ h.id }}">{{ h.first_name }}</option>
+    {% endfor %}
+  </select>
+
+  <form method="post" id="detailForm">
+    {% csrf_token %}
+    <input type="hidden" name="human_id" id="human_id">
+
+    <p>First Name: <input type="text" name="first_name" id="first_name"></p>
+    <p>Last Name: <input type="text" name="last_name" id="last_name"></p>
+    <p>Phone: <input type="text" name="phone" id="phone"></p>
+    <p>Address: <input type="text" name="address" id="address"></p>
+    <p>City: <input type="text" name="city" id="city"></p>
+
+    <button type="submit" name="update">Update</button>
+    <button type="submit" name="delete">Delete</button>
+  </form>
+
+  <hr>
+
+  <h3>Add New Person</h3>
+  <form method="post">
+    {% csrf_token %}
+    <p>First Name: <input type="text" name="first_name" required></p>
+    <p>Last Name: <input type="text" name="last_name" required></p>
+    <p>Phone: <input type="text" name="phone" required></p>
+    <p>Address: <input type="text" name="address" required></p>
+    <p>City: <input type="text" name="city" required></p>
+    <button type="submit" name="add">Add Person</button>
+  </form>
+
+  <script>
+    function loadHuman(id) {
+      if (!id) return;
+      fetch(`/get/${id}/`)
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById('human_id').value   = data.id;
+          document.getElementById('first_name').value = data.first_name;
+          document.getElementById('last_name').value  = data.last_name;
+          document.getElementById('phone').value      = data.phone;
+          document.getElementById('address').value    = data.address;
+          document.getElementById('city').value       = data.city;
+        });
+    }
+  </script>
+</body>
+</html>
