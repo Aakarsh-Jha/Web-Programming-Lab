@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Message Formatter</title>
+</head>
+<body style="font-family: Arial; padding: 30px;">
+
+    <h2>Message Formatter App</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label>Name:</label><br>
+        <input type="text" name="name"><br><br>
+
+        <label>Message:</label><br>
+        <input type="text" name="message"><br><br>
+
+        <h3>Formatting Options</h3>
+
+        <!-- Checkboxes -->
+        <input type="checkbox" name="bold"> Bold<br>
+        <input type="checkbox" name="italic"> Italic<br>
+        <input type="checkbox" name="underline"> Underline<br><br>
+
+        <!-- Radio Buttons for Color -->
+        <label>Choose Text Color:</label><br>
+        <input type="radio" name="color" value="red"> Red<br>
+        <input type="radio" name="color" value="blue"> Blue<br>
+        <input type="radio" name="color" value="green"> Green<br><br>
+
+        <!-- Buttons -->
+        <button type="submit" name="display">Display</button>
+        <button type="submit" name="clear">Clear</button>
+        <button type="submit" name="exit">Exit</button>
+
+    </form>
+
+    <hr>
+
+    {% if full_message %}
+        <label style="{{ style }} font-size:20px;">
+            {{ full_message }}
+        </label>
+    {% endif %}
+
+</body>
+</html>
