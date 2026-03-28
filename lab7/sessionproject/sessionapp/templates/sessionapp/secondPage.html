@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Second Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .result-box {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            width: 380px;
+            text-align: center;
+        }
+        h2 { color: #333; margin-bottom: 25px; }
+        .label-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+        .label-box p { font-size: 15px; color: #555; margin: 8px 0; }
+        .label-box span { font-weight: bold; color: #4a90e2; }
+        a {
+            display: inline-block; padding: 10px 25px;
+            background: #4a90e2; color: white;
+            text-decoration: none; border-radius: 8px; font-size: 14px;
+        }
+        a:hover { background: #357abd; }
+    </style>
+</head>
+<body>
+    <div class="result-box">
+        <h2>📄 Submitted Details</h2>
+        <div class="label-box">
+            <p>Name: <span>{{ name }}</span></p>
+            <p>Roll Number: <span>{{ roll }}</span></p>
+            <p>Subject: <span>{{ subject }}</span></p>
+        </div>
+        <a href="/">← Go Back</a>
+    </div>
+</body>
+</html>

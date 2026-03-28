@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .result-box {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            width: 380px;
+            text-align: center;
+        }
+        h2 { color: #333; margin-bottom: 25px; }
+        p { font-size: 16px; color: #555; margin: 10px 0; }
+        span { font-weight: bold; color: #4a90e2; }
+        a {
+            display: inline-block; margin-top: 25px;
+            padding: 10px 25px; background: #4a90e2;
+            color: white; text-decoration: none;
+            border-radius: 8px; font-size: 14px;
+        }
+        a:hover { background: #357abd; }
+    </style>
+</head>
+<body>
+    <div class="result-box">
+        <h2>🚗 Car Details</h2>
+        <p>Manufacturer: <span>{{ manufacturer }}</span></p>
+        <p>Model: <span>{{ model }}</span></p>
+        <a href="/">← Go Back</a>
+    </div>
+</body>
+</html>
