@@ -1,0 +1,35 @@
+{% extends "library/base.html" %}
+{% block content %}
+  <h2>Library Management System</h2>
+
+  <h3>Authors <a href="/library/authors/add/">[+ Add]</a></h3>
+  <ul>
+    {% for a in authors %}
+      <li>{{ a.first_name }} {{ a.last_name }} — {{ a.email }}</li>
+    {% empty %}
+      <li>No authors yet.</li>
+    {% endfor %}
+  </ul>
+
+  <h3>Publishers <a href="/library/publishers/add/">[+ Add]</a></h3>
+  <ul>
+    {% for p in publishers %}
+      <li>{{ p.name }} — {{ p.city }}, {{ p.country }} — <a href="{{ p.website }}">{{ p.website }}</a></li>
+    {% empty %}
+      <li>No publishers yet.</li>
+    {% endfor %}
+  </ul>
+
+  <h3>Books <a href="/library/books/add/">[+ Add]</a></h3>
+  <ul>
+    {% for b in books %}
+      <li>
+        <strong>{{ b.title }}</strong> ({{ b.publication_date }}) —
+        Publisher: {{ b.publisher }} —
+        Authors: {% for a in b.authors.all %}{{ a }}{% if not forloop.last %}, {% endif %}{% endfor %}
+      </li>
+    {% empty %}
+      <li>No books yet.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

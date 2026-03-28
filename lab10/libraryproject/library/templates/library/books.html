@@ -1,0 +1,19 @@
+{% extends "library/base.html" %}
+{% block content %}
+  <h2>Books</h2>
+  <a href="add/">+ Add Book</a>
+  <hr>
+  {% for book in books %}
+    <div>
+      <strong>{{ book.title }}</strong> ({{ book.publication_date }})<br>
+      Publisher: {{ book.publisher }}<br>
+      Authors:
+      {% for author in book.authors.all %}
+        {{ author }}{% if not forloop.last %}, {% endif %}
+      {% endfor %}
+    </div>
+    <hr>
+  {% empty %}
+    <p>No books yet.</p>
+  {% endfor %}
+{% endblock %}
