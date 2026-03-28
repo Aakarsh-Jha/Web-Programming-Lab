@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Feedback Form</title>
+
+    <style>
+        body {
+            background-color: #e6e6e6;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .container {
+            width: 500px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border: 1px solid #999;
+            padding: 20px;
+        }
+
+        h3 {
+            color: maroon;
+            text-align: center;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        .submit-btn {
+            background-color: #dcdcdc;
+            border: 1px solid #666;
+            padding: 5px 15px;
+            cursor: pointer;
+        }
+
+        .message {
+            color: red;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h3>Course Feedback Form</h3>
+    <hr>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <!-- Name -->
+        <label>Enter your Name:</label><br>
+        <input type="text" name="name" size="40" required>
+        <br><br>
+
+        <!-- Gender -->
+        <label>Sex:</label><br>
+        <input type="radio" name="gender" value="Male" required> Male
+        <input type="radio" name="gender" value="Female"> Female
+        <br><br>
+
+        <!-- Course List -->
+        <label>Select course:</label><br>
+        <select name="course">
+            <option>ASP-XML</option>
+            <option>DotNET</option>
+            <option>JavaPro</option>
+            <option>Unix</option>
+            <option>C</option>
+            <option>C++</option>
+        </select>
+        <br><br>
+
+        <!-- Technical Coverage -->
+        <label>Technical Coverage:</label><br>
+        <input type="radio" name="coverage" value="Excellent"> Excellent<br>
+        <input type="radio" name="coverage" value="Good"> Good<br>
+        <input type="radio" name="coverage" value="Average"> Average<br>
+        <input type="radio" name="coverage" value="Poor"> Poor
+        <br><br>
+
+        <!-- Suggestions -->
+        <label>Suggestions:</label><br>
+        <textarea name="suggestions" rows="4" cols="45"></textarea>
+        <br><br>
+
+        <input type="submit" value="Submit Form" class="submit-btn">
+
+    </form>
+
+    {% if message %}
+        <p class="message">
+            {{ message }}
+        </p>
+    {% endif %}
+
+</div>
+
+</body>
+</html>

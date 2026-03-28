@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Produce Bill</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+    <div class="col-md-6 mx-auto">
+
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white text-center">
+                <h4>Product Selection</h4>
+            </div>
+
+            <div class="card-body">
+
+                <form method="POST" action="{% url 'page2' %}">
+                    {% csrf_token %}
+
+                    <label class="fw-bold">Select Brand:</label><br>
+                    <input type="radio" name="brand" value="HP" required> HP<br>
+                    <input type="radio" name="brand" value="Nokia"> Nokia<br>
+                    <input type="radio" name="brand" value="Samsung"> Samsung<br>
+                    <input type="radio" name="brand" value="Motorola"> Motorola<br>
+                    <input type="radio" name="brand" value="Apple"> Apple<br><br>
+
+                    <label class="fw-bold">Select Item:</label><br>
+                    <input type="checkbox" name="item" value="Mobile"> Mobile<br>
+                    <input type="checkbox" name="item" value="Laptop"> Laptop<br><br>
+
+                    <label class="fw-bold">Quantity:</label>
+                    <input type="number" name="quantity" class="form-control" required><br>
+
+                    <button type="submit" class="btn btn-success w-100">
+                        Produce Bill
+                    </button>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
