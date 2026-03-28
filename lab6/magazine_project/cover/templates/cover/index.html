@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Magazine Cover Generator</title>
+    <style>
+    body {
+        margin: 0;
+        padding: 30px;
+        font-family: 'Poppins', 'Helvetica Neue', sans-serif;
+        background: linear-gradient(135deg, #1a1a1a, #111);
+        text-align: center;
+        color: white;
+    }
+
+    h2 {
+        font-size: 28px;
+        margin-bottom: 25px;
+        letter-spacing: 2px;
+    }
+
+    form {
+        margin: 0 auto 50px auto;
+        padding: 25px;
+        background: #111;
+        border-radius: 15px;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+        width: 420px;
+        text-align: left;
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    form label {
+        font-weight: 600;
+        margin: 10px 0 5px;
+        display: block;
+        letter-spacing: 1px;
+    }
+
+    form input, form button {
+        width: 100%;
+        padding: 10px;
+        border-radius: 6px;
+        border: none;
+        margin-bottom: 15px;
+        font-size: 14px;
+    }
+
+    form input {
+        background: #1e1e1e;
+        color: white;
+        border: 1px solid #333;
+    }
+
+    form button {
+        background: linear-gradient(45deg, #ff0055, #ff4d00);
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        transition: 0.3s ease;
+    }
+
+    form button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(255,0,85,0.7);
+    }
+
+    /* COVER */
+
+    .cover {
+        width: 70%;
+        height: 820px;
+        margin: 0 auto;
+        border-radius: 20px;
+        overflow: hidden;
+        position: relative;
+        background-size: cover;
+        background-position: center;
+        box-shadow: 0 30px 80px rgba(0,0,0,0.9);
+        transition: transform 0.4s ease;
+    }
+
+    .cover:hover {
+        transform: scale(1.02);
+    }
+
+    /* Dark cinematic overlay */
+    .cover::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            to bottom,
+            rgba(0,0,0,0.2),
+            rgba(0,0,0,0.6),
+            rgba(0,0,0,0.9)
+        );
+        z-index: 1;
+    }
+
+    .masthead {
+        position: absolute;
+        top: 40px;
+        width: 100%;
+        text-align: center;
+        font-size: 110px;
+        font-weight: 900;
+        letter-spacing: 8px;
+        text-transform: uppercase;
+        color: white;
+        z-index: 2;
+        -webkit-text-stroke: 2px black;
+        text-shadow: 
+            0 0 15px rgba(255,0,85,0.8),
+            0 0 30px rgba(255,0,85,0.5);
+    }
+
+    .headline {
+        position: absolute;
+        bottom: 220px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
+        font-size: 55px;
+        font-weight: 800;
+        text-align: center;
+        z-index: 2;
+        line-height: 1.2;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        background: linear-gradient(90deg, #ff0055, #ff4d00);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .subheadline {
+        position: absolute;
+        bottom: 160px;
+        width: 100%;
+        text-align: center;
+        font-size: 20px;
+        z-index: 2;
+        opacity: 0.85;
+        letter-spacing: 3px;
+    }
+
+    /* Teasers */
+
+    .teaser {
+        position: absolute;
+        background: linear-gradient(45deg, #ff0055, #ff4d00);
+        padding: 12px 18px;
+        font-weight: bold;
+        border-radius: 50px;
+        font-size: 14px;
+        letter-spacing: 1px;
+        z-index: 3;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        transform: rotate(-8deg);
+    }
+
+    .teaser.left {
+        top: 250px;
+        left: 30px;
+    }
+
+    .teaser.right {
+        top: 350px;
+        right: 30px;
+        transform: rotate(8deg);
+    }
+
+    .issue {
+        position: absolute;
+        top: 20px;
+        right: 25px;
+        font-size: 14px;
+        z-index: 3;
+        letter-spacing: 2px;
+        opacity: 0.8;
+    }
+</style>
+
+</head>
+<body>
+    <h2>Create Your Magazine Cover</h2>
+    <form method="post">
+        {% csrf_token %}
+        
+        <label>Masthead (Magazine Name):</label>
+        <input type="text" name="masthead" placeholder="Enter magazine name" required>
+
+        <label>Main Headline:</label>
+        <input type="text" name="message" placeholder="Enter headline" required>
+
+        <label>Background Image URL:</label>
+        <input type="text" name="image_url" placeholder="Paste an image link">
+
+        <button type="submit">Generate Cover</button>
+    </form>
+
+    {% if message %}
+<div class="cover" style="background-image: url('{{ image_url }}');">
+    
+    <div class="issue">APRIL 2026 • SPECIAL EDITION</div>
+
+    <div class="masthead">{{ masthead }}</div>
+
+    <div class="headline">
+        {{ message }}
+    </div>
+
+    <div class="subheadline">
+        THE FUTURE STARTS NOW
+    </div>
+
+    <div class="teaser left">
+        EXCLUSIVE INTERVIEW
+    </div>
+
+    <div class="teaser right">
+        TOP 10 GAME CHANGERS
+    </div>
+
+</div>
+{% endif %}
+
+</body>
+</html>
