@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head><title>Add Page</title></head>
+<body>
+<h2>Add Page</h2>
+<form action="/add_page/" method="POST">
+  {% csrf_token %}
+  <table>{{ form.as_table }}</table><br>
+  <input type="submit" value="Add Page">
+</form>
+<a href="/">Back</a>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head><title>Add Category</title></head>
+<body>
+<h2>Add Category</h2>
+<form action="/add_category/" method="POST">
+  {% csrf_token %}
+  <table>{{ form.as_table }}</table><br>
+  <input type="submit" value="Add Category">
+</form>
+<a href="/">Back</a>
+</body>
+</html>

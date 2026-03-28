@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Insert Work</title>
+<style>
+    body { font-family: Arial, sans-serif; max-width: 500px; margin: 40px auto; background: #f5f5f5; }
+    h2, h3 { color: #333; }
+    form { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+    table { width: 100%; }
+    input[type=text], input[type=number] { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+    input[type=submit] { margin-top: 15px; padding: 10px 24px; background: #4CAF50;
+                         color: white; border: none; border-radius: 5px; cursor: pointer; }
+    input[type=submit]:hover { background: #45a049; }
+    hr { margin: 20px 0; border: none; border-top: 1px solid #ddd; }
+    a { color: #4CAF50; }
+</style>
+</head>
+<body>
+<h2>Insert Record</h2>
+<form action="/insert/" method="POST">
+    {% csrf_token %}
+    <h3>WORKS Table</h3>
+    <table>{{ works_form.as_table }}</table>
+    <hr>
+    <h3>LIVES Table</h3>
+    <table>{{ lives_form.as_table }}</table>
+    <input type="submit" value="Insert">
+</form>
+<br><a href="/">← Back</a>
+</body>
+</html>
